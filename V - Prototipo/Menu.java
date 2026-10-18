@@ -7,12 +7,14 @@ import java.util.Arrays;
 public class Menu {
 
 	// Variáveis públicas
-	public static Scanner scanner = new Scanner(System.in);
+	public static Scanner scanner;
 
 	// Variáveis privadas
-	public static boolean rodando = true;
-	public static String input = null;
-	public static ArrayList<String> opcoes = new ArrayList<> (Arrays.asList("Adivinhe o número", "Sair"));
+	public static boolean rodando;
+	public static String input;
+
+	// Listas privadas
+	public static ArrayList<String> opcoes;
 
 	// Método construtor
 	public Menu() {
@@ -39,7 +41,7 @@ public class Menu {
 			input = pegarEntrada("Digite o número do jogo correspondente: ");
 
 			// Tenta converter a entrada
-			int inputInt = 0;
+			int inputInt = 9999;
 
 			// Tenta converter
 			try {
@@ -47,29 +49,30 @@ public class Menu {
 				// Tenta converter
 				inputInt = Integer.parseInt(input);
 
+				// Verifica a entrada
+				switch(inputInt) {
+	
+					// Caso seja o primeiro jogo
+					case 0:
+						System.out.println("Chamando o Adivinhe o número");
+						fecharScanner();
+						new Jogo1();
+						break;
+	
+					// Caso seja para sair
+					case 1:
+						encerrar(0);
+						break;
+	
+					// Caso não seja nenhum
+					default:
+						System.out.println("Você não digitou um número correspondente há lista!");
+						break;
+				}
+
 			// Roda se dar erro
 			} catch (NumberFormatException e) {
 				System.out.println("Você não digitou número!");
-			}
-	
-			// Verifica a entrada
-			switch(inputInt) {
-
-				// Caso seja o primeiro jogo
-				case 0:
-					System.out.println("Chamando o Adivinhe o número");
-					new Jogo1();
-					break;
-
-				// Caso seja para sair
-				case 1:
-					encerrar(0);
-					break;
-
-				// Caso não seja nenhum
-				default:
-					System.out.println("Você não digitou um número correspondente há lista!");
-					break;
 			}
 		}
 	}
@@ -107,8 +110,26 @@ public class Menu {
 
 	// Método que inicializa o Menu
 	public static void inicializar() {
-		System.out.println("Nenhuma dependência para resolver");
+
+		// Começo dos logs
+		System.out.println("A dependências a resolver");
+
+		// Carrega as variáveis
+		System.out.println("Carregando variáveis...");
+		scanner = new Scanner(System.in);
+		rodando = true;
+		input = null;
+
+		// Carrega as listas
+		System.out.println("Carregando listas...");
+		opcoes = new ArrayList<> (Arrays.asList("Adivinhe o número", "Sair"));
+
+		// Log de inicio do programa
 		System.out.println("Programa iniciado");
+	}
+
+	public void fecharScanner() {
+		scanner.close();
 	}
 }
 

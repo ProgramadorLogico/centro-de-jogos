@@ -12,7 +12,6 @@ public class Jogo1 {
 	// Variáveis privadas
 	private boolean rodando;
 	private String input;
-	private int chances;
 	private boolean inputValido;
 	private int numeroAleatorio;
 	
@@ -31,7 +30,7 @@ public class Jogo1 {
 		// Loop
 		while (rodando) {
 
-			System.out.println("Hello?");
+			System.out.println("");
 
 			// Pega a entrada
 			input = pegarEntrada("Digite um número de 1 a 100: ");
@@ -43,17 +42,22 @@ public class Jogo1 {
 				int inputInt = Integer.parseInt(input);
 
 				// Caso seja válido
-				if (input == numeroAleatorio) {
+				if (inputInt == numeroAleatorio) {
 
 					// Logs
 					System.out.println("");
 					System.out.println("Você venceu!");
+					System.out.println("");
+
+					// Fecha o jogo
+					rodando = false;
 
 					// Encerra
-					encerrar();
+					encerrar(0);
 
 				// Caso não seja
 				} else {
+					verificarNumeroMaiorOuMenor(inputInt);
 					System.out.println("Não foi dessa vez, tente novamente");
 				}
 
@@ -77,14 +81,13 @@ public class Jogo1 {
 		random = new Random();
 		rodando = true;
 		input = null;
-		chances = 5;
 		inputValido = false;
 		setarNumero();
 		System.out.println("Variáveis carregadas");
 	}
 
 	// Método que pega a entrada do usuário
-	public static String pegarEntrada(String texto) {
+	public String pegarEntrada(String texto) {
 
 		// Printa a mensagem e pega a resposta
 		System.out.print(texto);
@@ -106,10 +109,31 @@ public class Jogo1 {
 
 		// Logs de encerramento
 		System.out.println("Encerrando...");
-		System.out.println("Nenhuma dependência a resolver");	
+		System.out.println("A dependências a resolver");
+		System.out.println("Chamando o Menu...");	
 		System.out.println("Programa encerrado");
+		System.out.println("");
 
 		// Fecha o programa
 		new Menu();
 	}
+
+	// Método que verifica se o número é maior ou menor
+	public void verificarNumeroMaiorOuMenor(int numero) {
+
+		// Se o número for menor
+		if (numero > numeroAleatorio) {
+			System.out.println("Número menor");
+
+		// Caso seja maior
+		} else {
+			System.out.println("Número maior");
+		}
+	}
 }
+
+/*
+ * Olá usuário, que bom que você jogou meu jogo, fico feliz com isso
+ * Espero que tenha gostado do jogo!
+ * Deixe seu FEEDBACK
+ */

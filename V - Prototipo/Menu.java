@@ -55,7 +55,6 @@ public class Menu {
 					// Caso seja o primeiro jogo
 					case 0:
 						System.out.println("Chamando o Adivinhe o número");
-						fecharScanner();
 						new Jogo1();
 						break;
 	
@@ -101,6 +100,7 @@ public class Menu {
 	public static void encerrar(int erros) {
 
 		// Printa os logs de encerramento
+		System.out.println("");
 		System.out.println("Nenhuma dependência para resolver");
 		System.out.println("Programa encerrado");
 
@@ -126,10 +126,6 @@ public class Menu {
 
 		// Log de inicio do programa
 		System.out.println("Programa iniciado");
-	}
-
-	public void fecharScanner() {
-		scanner.close();
 	}
 }
 
